@@ -1,0 +1,117 @@
+{
+  "app_name": "القرآن المبسط (Simple Quran)",
+  "app_type": "React Native Expo (Mobile)",
+  "theme_archetype": "Archetype 1: Organic & Earthy (Traditional Islamic, Reverent, Calm)",
+  "core_principles": [
+    "Typography is the Hero: Everything serves the Arabic text. The aesthetic is 'Digital Mushaf'.",
+    "Distraction-Free: The reading screen must be completely devoid of persistent UI chrome. No sticky headers.",
+    "Restrained Elegance: No gradients, no bright saturated colors. Use 'Old Paper' (#FBF8F1) and 'Aged Gold' accents."
+  ],
+  "colors": {
+    "light": {
+      "background": "#FBF8F1",
+      "surface": "#F2EFE8",
+      "text_primary": "#1A1A1A",
+      "text_secondary": "#5C564C",
+      "accent": "#A78B5D",
+      "border": "#E5DFD1"
+    },
+    "dark": {
+      "background": "#121212",
+      "surface": "#1A1A1A",
+      "text_primary": "#EAEAEA",
+      "text_secondary": "#A0A0A0",
+      "accent": "#C2A878",
+      "border": "#2A2A2A"
+    }
+  },
+  "typography": {
+    "primary_quran_font": "Scheherazade New",
+    "secondary_ui_font": "Amiri (or System Default Serif)",
+    "rules": {
+      "quran_text": "Must have generous line height (e.g. 2.0 to 2.5 multiplier) to prevent Tashkeel (diacritics) from clipping. Text should be right-aligned or justified.",
+      "ui_text": "Used for buttons, surah names in the index, and settings."
+    },
+    "hierarchy": {
+      "h1": { "fontSize": 32, "lineHeight": 48, "fontWeight": "bold" },
+      "h2_surah_title": { "fontSize": 24, "lineHeight": 36, "fontWeight": "bold" },
+      "quran_text": { "fontSize": 32, "lineHeight": 64, "fontWeight": "normal", "description": "Highly responsive to font size +/- controls. Default 32px." },
+      "ui_text": { "fontSize": 18, "lineHeight": 28, "fontWeight": "normal" },
+      "verse_number": { "fontSize": 16, "color": "accent" }
+    }
+  },
+  "layout_and_spacing": {
+    "direction": "RTL (Right-to-Left)",
+    "spacing_scale": {
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "xxl": 48
+    },
+    "screen_padding": 24,
+    "verse_spacing": 12
+  },
+  "screens": {
+    "IndexScreen": {
+      "description": "List of Surahs with a prominent 'Continue Reading' button.",
+      "layout": "FlatList or ScrollView",
+      "components": [
+        {
+          "name": "ContinueReadingButton",
+          "style": "Large, prominent card at the top. Accent background or border. Contains last read Surah name.",
+          "test_id": "continue-reading-btn"
+        },
+        {
+          "name": "SurahListItem",
+          "style": "Clean rows, padding 16px, bottom border. Right-aligned Surah name, left-aligned verse count/icon.",
+          "test_id": "surah-item-{id}"
+        }
+      ]
+    },
+    "ReadingScreen": {
+      "description": "Distraction-free continuous reading screen.",
+      "layout": "ScrollView (Do NOT use FlatList for individual verses to ensure text wraps and flows naturally like a physical book).",
+      "components": [
+        {
+          "name": "QuranTextContainer",
+          "style": "Padding 24px. Contains the continuous text of the Surah. Verse numbers inline.",
+          "test_id": "quran-text-container"
+        },
+        {
+          "name": "NextSurahButton",
+          "style": "Simple outlined or flat button placed at the very end of the ScrollView.",
+          "test_id": "next-surah-btn"
+        },
+        {
+          "name": "SettingsBar",
+          "style": "Hidden by default. Appears on tap. Contains Font +/- and Theme toggle.",
+          "test_id": "settings-bar",
+          "children_test_ids": [
+            "font-increase-btn",
+            "font-decrease-btn",
+            "theme-toggle-btn"
+          ]
+        }
+      ]
+    }
+  },
+  "instructions_to_main_agent": [
+    "Initialize the app using React Native Expo. Use pure JS (.js files).",
+    "Implement RTL support. Use 'react-native' I18nManager.forceRTL(true) or style flexDirection: 'row-reverse' globally.",
+    "Load the 'Scheherazade New' font via @expo-google-fonts/scheherazade-new.",
+    "For the verse numbers, use the Arabic end of ayah symbol ۝ (U+06DD). Example format: ` ۝ ${verse_number} `.",
+    "Implement auto-save mechanism using '@react-native-async-storage/async-storage'. Save the current Surah ID and scroll position offset when the user scrolls or leaves the screen.",
+    "The reading text must be a continuous string or inline text components wrapped in a single <Text> node, so that it flows exactly like a physical Quran.",
+    "Ensure 'day/night' toggle updates colors across the app without requiring a restart.",
+    "Data must be completely offline. Load a local JSON file containing the Quran text.",
+    "Hide the status bar or make it translucent on the reading screen to maximize distraction-free reading."
+  ],
+  "media": {
+    "image_urls": [],
+    "icons": {
+      "description": "Use purely text-based Islamic symbols or simple Expo vector icons (e.g., Feather/Ionicons) for settings/font-size."
+    }
+  }
+}
