@@ -1,0 +1,19 @@
+{
+  "name": "نظام حوكمة الزكاة الذكي",
+  "short_name": "الزكاة",
+  "description": "حاسبة زكاة شافعية Local-First تحمي بياناتك المالية داخل متصفحك فقط",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#064E3B",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
